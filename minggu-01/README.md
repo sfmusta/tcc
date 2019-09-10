@@ -38,3 +38,28 @@ cd minggu-01
 ```
 isi folder minggu-01 dengan file **README.md** ini
 ![alt text](pic07.png "Repository")
+
+#### 5. Push Repository
+jalankan perintah untuk menambahkan file apa saja yang akan ditambahkan
+```
+git add -A
+```
+lihat status
+```
+git status
+```
+![alt text](pic08.png "Repository")
+commit perubahan
+```
+git commit -m "tambah repo minggu-01"
+```
+![alt text](pic09.png "Repository")
+lalu push ke github
+ketik perintah 
+```
+git push origin master
+```
+Muncul windows login
+![alt text](pic10.png "Repository")
+Jika berhasil nanti akan seperti ini
+![alt text](pic11.png "Repository")
