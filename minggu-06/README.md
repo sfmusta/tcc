@@ -1,3 +1,5 @@
+# Redis
+
 ### Step 1 - Running A Container
 ```
 $ docker search redis
@@ -305,4 +307,39 @@ ab6c0b5c81de        redis:latest        "docker-entrypoint.s…"   4 minutes ago
 ```
 $ docker run -it ubuntu bash
 root@1d43890681ca:/#
+```
+
+# Nginx
+#### Step 1 - Create Dockerfile
+Membuat Dockerfile
+```
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
+```
+
+#### Step 2 - Build Docker Image
+Melalui terminal jalankan perintah berikut
+```
+$ docker build -t webserver-image:v1 .
+
+Sending build context to Docker daemon  3.072kB
+Step 1/2 : FROM nginx:alpine
+ ---> 4d3c246dfef2
+Step 2/2 : COPY . /usr/share/nginx/html
+ ---> 0e6105acc7ef
+Successfully built 0e6105acc7ef
+Successfully tagged webserver-image:v1
+```
+#### Step 3 - Run
+Menjalankan nginx
+```
+$ docker run -d -p 80:80 webserver-image:v1
+2e73d86313b0cdb71a865cac4bede5e27c47c93fd4beb0a699420c300eb77d19
+$ docker ps | grep nginx
+2e73d86313b0        webserver-image:v1   "nginx -g 'daemon of…"   19 seconds ago   Up 12 seconds       0.0.0.0:80->80/tcp   elegant_vaughan
+```
+mencoba mengakses nginx menggunakan curl
+```
+$ curl docker
+<h1>Hello World</h1>
 ```
