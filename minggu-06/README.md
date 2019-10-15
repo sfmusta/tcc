@@ -343,3 +343,62 @@ mencoba mengakses nginx menggunakan curl
 $ curl docker
 <h1>Hello World</h1>
 ```
+
+# Building Container Images
+#### Step 1 - Base Images
+Membuat Dockerfile, masukkan konfigurasi base image
+```
+FROM nginx:latest
+```
+#### Step 2 - Running Commands
+menambahkan perintah setelah base image untuk menyalin file index.html ke home directory web untuk container
+```
+COPY index.html /usr/share/nginx/html/index.html
+```
+#### Step 3 - Exposing Ports
+menambahkan konfigurasi untuk meng-expose port
+```
+EXPOSE 80
+```
+#### Step 4 - Default Commands
+menambahkan perintah utama
+```
+CMD ["nginx", "-g", "daemon off;"]
+```
+#### Step 5 - Building Containers
+membangun container
+```
+$ docker build -t my-nginx-image:latest .
+
+Sending build context to Docker daemon  3.072kB
+Step 1/4 : FROM nginx:latest
+latest: Pulling from library/nginx
+b8f262c62ec6: Pull complete
+e9218e8f93b1: Pull complete
+7acba7289aa3: Pull complete
+Digest: sha256:aeded0f2a861747f43a01cf1018cf9efe2bdd02afd57d2b11fcc7fcadc16ccd1
+Status: Downloaded newer image for nginx:latest
+ ---> f949e7d76d63
+Step 2/4 : COPY index.html /usr/share/nginx/html/index.html
+ ---> 10ae49e02c0e
+Step 3/4 : EXPOSE 80
+ ---> Running in 80a65a00b715
+Removing intermediate container 80a65a00b715
+ ---> 241c1d2e5b58
+Step 4/4 : CMD ["nginx", "-g", "daemon off;"]
+ ---> Running in 72803db69fbd
+Removing intermediate container 72803db69fbd
+ ---> c36236af3510
+Successfully built c36236af3510
+Successfully tagged my-nginx-image:latest
+```
+#### Step 6 - Launching New Image
+```
+$ docker ps | grep my-nginx
+28717c57a0ed        my-nginx-image:latest   "nginx -g 'daemon of…"   19 seconds ago      Up 18 seconds       0.0.0.0:80->80/tcp   heuristic_noyce
+```
+Test
+```
+$ curl docker
+<h1>Salam Kegelapan</h1>
+```
