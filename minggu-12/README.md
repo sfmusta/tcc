@@ -136,5 +136,8 @@ postgres_1  | 2019-12-10 13:21:44.093 UTC [1] LOG:  database system is ready to 
 drupal_1    | AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.18.0.2. Set the 'ServerName' directive globally to suppress this message
 ```
 3. Akses melalui Browser
-![halaman awal Drupal](1.png)
-
+![halaman awal instalasi Drupal](1.png)
+4. Install Browser
+![proses instalasi](2.png)
+5. Halaman awal Drupal
+![Drupal](3.png)
