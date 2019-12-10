@@ -19,8 +19,10 @@ services:
     image: postgres:10
     environment:
       POSTGRES_PASSWORD: your_postgres_password
+    ports:
+      - 5432:5432
     volumes:
-        - db_data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
     restart: always
 
 volumes:
